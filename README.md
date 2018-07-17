@@ -41,3 +41,6 @@
 
 * event.respondWith
 接受一个promise,通常是一个请求结果（可以是缓存读取或者正常网络请求，由开发者控制）
+
+## 示例代码
+[点击查看](/dist/service-worker.js)
