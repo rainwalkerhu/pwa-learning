@@ -2,7 +2,7 @@
   "name": "pwa-learning",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "胡晶 <jing.hu@dbappsecurity.com.cn>",
+  "author": "rainwalker",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
