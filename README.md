@@ -188,5 +188,6 @@ self.addEventListener('fetch', event => {
 
 ## 当前存在的疑问
 
-* sw都有哪些事件
-* cache.keys返回的是cacheName还是某个cacheName下的所有response文件
+* cache.keys返回的是所有cacheName项还是某个cacheName下的所有response缓存项
+
+        我理解的是打开某个cacheName后调用cache.keys(),返回当前缓存空间下的所有response
