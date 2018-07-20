@@ -1,5 +1,5 @@
 'use strict'
-
+// console.clear()
 var precacheConfig = [
   ['index.html', 'a8df45d056abfd410de1e4f842f20da8'],
   ['service-worker.js', '3f1463e44be21e082c7853f07cd64bf7'],
@@ -179,6 +179,8 @@ self.addEventListener('install', function(event) {
       .open(cacheName)
       .then(function(cache) {
         return setOfCachedUrls(cache).then(function(cachedUrls) {
+          console.log('install------------------------------------------------------>')
+          console.log('已经缓存的url:', cachedUrls, '需要缓存的url:', urlsToCacheKeys)
           return Promise.all(
             Array.from(urlsToCacheKeys.values()).map(function(cacheKey) {
               // If we don't have a key matching url in the cache already, add it.
@@ -198,6 +200,7 @@ self.addEventListener('install', function(event) {
                         response.status
                     )
                   }
+                  console.log('添加缓存：', response)
 
                   return cleanResponse(response).then(function(
                     responseToCache
@@ -227,9 +230,12 @@ self.addEventListener('activate', function(event) {
       .open(cacheName)
       .then(function(cache) {
         return cache.keys().then(function(existingRequests) {
+          console.log('activate------------------------------------------------------>')
+          console.log('之前缓存的文件', existingRequests)
           return Promise.all(
             existingRequests.map(function(existingRequest) {
               if (!setOfExpectedUrls.has(existingRequest.url)) {
+                console.log('激活期间检测到该缓存过期,', existingRequest, '删除文件！')
                 return cache.delete(existingRequest)
               }
             })
@@ -288,6 +294,8 @@ self.addEventListener('fetch', function(event) {
         caches
           .open(cacheName)
           .then(function(cache) {
+            console.log('fetch---------------------------------------------------------->')
+            console.log('请求命中缓存，地址为：', url)
             return cache
               .match(urlsToCacheKeys.get(url))
               .then(function(response) {
@@ -305,6 +313,8 @@ self.addEventListener('fetch', function(event) {
               event.request.url,
               e
             )
+            console.log('fetch--------------------------------------------------------->')
+            console.log('请求缓存不存在，重新请求，地址为：', url)
             return fetch(event.request)
           })
       )
