@@ -66,7 +66,6 @@
   * install
   * activate    
   * fetch
-  * 
 
 ## 生命周期
 ![avatar](/static/sw-life-cycle.png)
