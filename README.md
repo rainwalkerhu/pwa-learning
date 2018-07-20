@@ -1,6 +1,6 @@
 # pwa-learning
 
-> 内部分享service work相关示例以及学习笔记
+> service work相关示例以及学习笔记
 
 ## service worker
 
