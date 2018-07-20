@@ -199,10 +199,7 @@ self.addEventListener('fetch', event => {
 * `Redundant`事件，installing 事件失败 - activating 事件失败 - 被新的Service Worker取代都会触发废弃事件
 
 ## 示例代码
-[点击查看](/service-worker.js)
+[点击查看](/dist/service-worker.js)
 
-## 当前存在的疑问
-
-* cache.keys返回的是所有cacheName项还是某个cacheName下的所有response缓存项
-
-        我理解的是打开某个cacheName后调用cache.keys(),返回当前缓存空间下的所有response
+## 调试方法
+[点击查看](https://lavas.baidu.com/pwa/offline-and-cache-loading/service-worker/service-worker-debug)
