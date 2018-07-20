@@ -17,6 +17,23 @@
         })
 
     ```
+* 你会用到的最常见的response属性有:
+
+    * `Response.status` — 整数(默认值为200) 为response的状态码.
+
+    * `Response.statusText` — 字符串(默认值为"OK"),该值与HTTP状态码消息对应.
+
+    * `Response.ok` — 如上所示, 该属性是来检查response的状态是否在200-299(包括200,299)这个范围内.该属性返回一个Boolean值.
+
+* Request 接口的 mode 只读属性包含请求的模式 (e.g., cors, no-cors, cors-with-forced-preflight, same-origin, or navigate.) 这用于确定跨域请求是否导致有效的响应，以及响应的哪些属性是可读的：
+
+    * `same-origin` — 如果使用此模式向另外一个源发送请求，显而易见，结果会是一个错误。你可以设置该模式以确保请求总是向当前的源发起的。
+    * `no-cors` — 保证其对应的方法只有HEAD，GET或POST方法 。即使ServiceWorkers 拦截了这个请求,除了simple header之外不会添加或覆盖任意其他header, 另外JavaScript不会读取Response的任何属性 . 这样将会确保ServiceWorkers不会影响Web语义(semantics of the Web), 同时保证了在跨域时不会发生安全和隐私泄露的问题.
+
+    * `cors` — 允许跨域请求，例如访问第三方供应商提供的各种API。
+    
+    * `navigate` — 支持导航的一个模式。导航仅供HTML文档使用（在文档之间导航时创建导航请求）。
+
 * `CacheStorage`: Cache对象存储（本地存储）查看chrome: Application—> cache storage
 * `Cache API`: Cache对象暴露在window下,提供Request / Response对象对的存储（增删查改操作）,Cache API 基于promise
     * `Cache.match(request, options)`

@@ -1,6 +1,7 @@
 'use strict';
 
-var precacheConfig = [["index.html","a8df45d056abfd410de1e4f842f20da8"],
+var precacheConfig = [
+  ["index.html","a8df45d056abfd410de1e4f842f20da8"],
 ["service-worker.js","3f1463e44be21e082c7853f07cd64bf7"],
 ["static/css/app.1d063bc0cd301699760e884e1e4c3379.css","96abd660b227baae7d6d1da188f73912"],
 ["static/js/app.0239787a754c9e7e53e0.js","0674b5cf63b58edca665a0ff061f3e87"],
