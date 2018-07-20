@@ -10,20 +10,39 @@
   * 1，当接收到一个代表错误的 HTTP 状态码时，从 fetch()返回的 Promise 不会被标记为 reject， 即使该 HTTP 响应的状态码是 404 或 500。相反，它会将 Promise 状态标记为 resolve （但是会将 resolve 的返回值的 ok 属性设置为 false ），仅当网络故障时或请求被阻止时，才会标记为 reject。
   * 2， 默认情况下，fetch 不会从服务端发送或接收任何 cookies, 如果站点依赖于用户 session，则会导致未经认证的请求（要发送 cookies，必须设置 credentials 选项
   * fetch 分为三大模块 Header、Request、Response,可以自行谷歌
-```
-fetch(url, {
-  credentials: 'include'
-})
+    ```
 
-```
+        fetch(url, {
+            credentials: 'include'
+        })
+
+    ```
 * `CacheStorage`: Cache对象存储（本地存储）查看chrome: Application—> cache storage
-* `Cache API`: Cache对象暴露在window下,提供Request / Response对象对的存储（增删查改操作）
-    * caches.open
-    * cache.addAll 抓取一个url数组，检索并将
-    * cache.put 添加缓存
-    * caches.match 缓存匹配
-    * caches.delete 删除过期的缓存
-    * caches.keys 
+* `Cache API`: Cache对象暴露在window下,提供Request / Response对象对的存储（增删查改操作）,Cache API 基于promise
+    * `Cache.match(request, options)`
+        
+            返回一个 Promise对象，resolve的结果是跟 Cache 对象匹配的第一个已经缓存的请求。
+    * `Cache.matchAll(request, options)`
+   
+            返回一个Promise 对象，resolve的结果是跟Cache对象匹配的所有请求组成的数组。
+    * `Cache.add(request)`
+    
+            抓取这个URL, 检索并把返回的response对象添加到给定的Cache对象.这在功能上等同于调用 fetch(), 然后使用 Cache.put() 将response添加到cache中.
+    * `Cache.addAll(requests)`
+
+            抓取一个URL数组，检索并把返回的response对象添加到给定的Cache对象。
+
+    * `Cache.put(request, response)`
+    
+            同时抓取一个请求及其响应，并将其添加到给定的cache。
+
+    * `Cache.delete(request, options)` 
+
+            搜索key值为request的Cache 条目。如果找到，则删除该Cache 条目，并且返回一个resolve为true的Promise对象；如果未找到，则返回一个resolve为false的Promise对象。
+
+    * `Cache.keys(request, options)`
+
+            返回一个Promise对象，resolve的结果是Cache对象key值组成的数组。
 
     _安全起见，只能缓存 GET & HEAD 的请求，对于 POST 等类型请求，返回数据可以保存在 indexDB 中_
 
@@ -171,4 +190,3 @@ self.addEventListener('fetch', event => {
 
 * sw都有哪些事件
 * cache.keys返回的是cacheName还是某个cacheName下的所有response文件
-* cache API是否基于promise
